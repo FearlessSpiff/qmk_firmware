@@ -7,8 +7,8 @@
         "mousekey": true,
         "bootmagic": true,
         "extrakey": true,
-        "oled": true,
-        "rgb_matrix": true
+        "oled": false,
+        "rgb_matrix": false
     },
     "layout_aliases": {
         "LAYOUT": "LAYOUT_split_3x5_2"
