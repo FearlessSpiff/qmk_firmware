@@ -16,6 +16,13 @@
 
 #pragma once
 
-#ifdef RGBLIGHT_ENABLE
-#   define RGBLIGHT_EFFECT_BREATHING
-#endif
+#define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 3000  /* Time (in ms) before the one shot key is released */
+
+#define IGNORE_MOD_TAP_INTERRUPT  // MT key must be held longer than tapping term for
+                                  // modifer to be registered
+#define TAPPING_TERM_PER_KEY
+
+#define COMBO_COUNT 3             // number of combos used
+#define COMBO_TERM 200            // time out for combos in ms
+#define TAPPING_TERM 200          // time out for tap-hold in ms

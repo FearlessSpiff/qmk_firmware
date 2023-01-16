@@ -21,3 +21,8 @@
 # while we use the regular RGB underglow for testing
 RGB_MATRIX_ENABLE = no
 RGBLIGHT_ENABLE = no
+
+COMBO_ENABLE = yes
+
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = pimoroni_trackball
