@@ -58,17 +58,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 enum combos {
   C_TAB,
-  C_RETN,
+  C_ENT,
   C_GUI
 };
 
-const uint16_t PROGMEM tab_combo[]  = {DE_J, LT(_NAV, DE_C), COMBO_END};
-const uint16_t PROGMEM retn_combo[] = {DE_H, DE_K, COMBO_END};
-const uint16_t PROGMEM gui_combo[]  = {MO(_NUM), KC_LSFT, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {DE_J, LT(_NAV, DE_C), COMBO_END};
+const uint16_t PROGMEM ent_combo[] = {DE_H, DE_K, COMBO_END};
+const uint16_t PROGMEM gui_combo[] = {MO(_NUM), KC_LSFT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [C_TAB] = COMBO(tab_combo, KC_TAB),
-  [C_RETN] = COMBO(retn_combo, KC_RETN),
+  [C_ENT] = COMBO(ent_combo, KC_ENT),
   [C_GUI] = COMBO(gui_combo, KC_LGUI)
 };
 
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NAV] = LAYOUT(
         KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC, _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,
-        _______, _______, _______, _______,  _______,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_RETN,
+        _______, _______, _______, _______,  _______,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT,
         KC_LSFT, _______, _______, _______,  _______,          _______, _______, _______, _______,  DE_SS,
                                    _______,  _______,          _______, KC_DEL
     ),
