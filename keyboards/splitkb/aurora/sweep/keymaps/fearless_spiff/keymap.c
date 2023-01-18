@@ -38,12 +38,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case M_LCK:
         if (record->event.pressed) {
-            SEND_STRING(SS_LGUI("L"));
+            SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_L) SS_UP(X_LGUI));
         }
         break;
     case M_GO_SRC:
         if (record->event.pressed) {
-            SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_F1) SS_UP(X_LALT) SS_DELAY(2000) SS_TAP(X_RETN));
+            SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_F1) SS_UP(X_LALT) SS_DELAY(1000) SS_TAP(X_ENT));
         }
         break;
     case M_RUN:
