@@ -87,10 +87,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    _______,  _______,          _______, KC_DEL
     ),
     [_SYM] = LAYOUT(
-        DE_CIRC, DE_UNDS, DE_LCBR, DE_RCBR,        DE_SECT,        DE_EXLM, DE_LABK,        DE_RABK, DE_EQL,  DE_AMPR,
-        DE_BSLS, DE_SLSH, DE_LPRN, SFT_T(DE_RPRN), DE_ASTR,        DE_QUES, SFT_T(DE_LBRC), DE_RBRC, DE_MINS, DE_COLN,
-        DE_ACUT, DE_DLR,  DE_PIPE, DE_TILD,        DE_HASH,        DE_PLUS, DE_PERC,        DE_DQUO, DE_QUOT, DE_SCLN,
-                                   _______,        _______,        _______,  _______
+        DE_CIRC, DE_UNDS, DE_LCBR, DE_RCBR, DE_SECT,        DE_EXLM, DE_LABK, DE_RABK, DE_EQL,  DE_AMPR,
+        DE_BSLS, DE_SLSH, DE_LPRN, DE_RPRN, DE_ASTR,        DE_QUES, DE_LBRC, DE_RBRC, DE_MINS, DE_COLN,
+        DE_ACUT, DE_DLR,  DE_PIPE, DE_TILD, DE_HASH,        DE_PLUS, DE_PERC, DE_DQUO, DE_QUOT, DE_SCLN,
+                                   _______, _______,        _______,  _______
     ),
     [_NUM] = LAYOUT(
         _______,       _______,       _______,       MO(_SET),      _______,          DE_SLSH, KC_7, KC_8, KC_9, DE_MINS,
