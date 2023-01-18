@@ -26,3 +26,6 @@
 #define COMBO_COUNT 3             // number of combos used
 #define COMBO_TERM 200            // time out for combos in ms
 #define TAPPING_TERM 200          // time out for tap-hold in ms
+
+#define POINTING_DEVICE_INVERT_X
+#define POINTING_DEVICE_INVERT_Y
