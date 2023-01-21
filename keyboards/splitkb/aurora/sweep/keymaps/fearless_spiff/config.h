@@ -6,7 +6,7 @@
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * but WITHOUT ANY WRRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
@@ -27,6 +27,6 @@
 #define COMBO_TERM 200            // time out for combos in ms
 #define TAPPING_TERM 200          // time out for tap-hold in ms
 
-#define PIMORONI_TRACKBALL_SCALE 3
+#define PIMORONI_TRACKBALL_SCALE 4
 #define POINTING_DEVICE_INVERT_X
 #define POINTING_DEVICE_INVERT_Y
