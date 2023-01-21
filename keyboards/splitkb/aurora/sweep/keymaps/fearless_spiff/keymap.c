@@ -75,10 +75,10 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF] = LAYOUT(
-        DE_J,           DE_L,        DE_U,        DE_A,        DE_Q,              DE_W,             DE_B,        DE_D,        DE_G,         DE_Z,
-        LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E), DE_O,              DE_M,             SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), DE_H,
-        DE_V,           DE_X,        DE_UDIA,     DE_ADIA,     DE_ODIA,           DE_P,             DE_F,        DE_COMM,     DE_DOT,       DE_K,
-                                                  LT(_NUM, DE_Y),    KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC
+        DE_J,           DE_L,        DE_U,        DE_A,           DE_Q,              DE_W,             DE_B,        DE_D,        DE_G,         DE_Z,
+        LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E),    DE_O,              DE_M,             SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), DE_H,
+        DE_V,           DE_X,        DE_UDIA,     DE_ADIA,        DE_ODIA,           DE_P,             DE_F,        DE_COMM,     DE_DOT,       DE_K,
+                                                  LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC
     ),
     [_NAV] = LAYOUT(
         KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC, _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,
