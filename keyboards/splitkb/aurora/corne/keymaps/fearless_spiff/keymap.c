@@ -15,230 +15,99 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+#include "keymap_german.h"
 
-enum layer_names {
-    _QWERTY,
-    _QWERTY_NOHOMEROW,
-    _COLEMAK,
-    _COLEMAK_NOHOMEROW,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-    _ONESHOT,
+
+enum layers {
+    _DEF = 0,
+    _NAV = 1,
+    _SYM = 2,
+    _NUM = 3,
+    _FN  = 4,
+    _SET = 5
 };
+
 
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
-  QWERTY_NOHOMEROW,
-  COLEMAK,
-  COLEMAK_NOHOMEROW,
-  LOWER,
-  RAISE,
-  ADJUST,
-  ONESHOT,
-  DT_UP_50,
-  DT_DOWN_50,
-  DT_UP_X2,
-  DT_DOWN_X2,
-  DT_200,
-  DT_MAX,
-};
-
-#define LSFT_KA LSFT_T(KC_A)
-#define LCTL_KS LCTL_T(KC_S)
-#define LGUI_KD LGUI_T(KC_D)
-#define LALT_KF LALT_T(KC_F)
-#define LALT_KJ LALT_T(KC_J)
-#define RGUI_KK RGUI_T(KC_K)
-#define RCTL_KL RCTL_T(KC_L)
-#define RS_SCLN RSFT_T(KC_SCLN)
-
-#define LCTL_KR LCTL_T(KC_R)
-#define LGUI_KS LGUI_T(KC_S)
-#define LALT_KT LALT_T(KC_T)
-#define LALT_KN LALT_T(KC_N)
-#define RGUI_KE RGUI_T(KC_E)
-#define RCTL_KI RCTL_T(KC_I)
-#define RSFT_KO RSFT_T(KC_O)
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_BSPC, LSFT_KA, LCTL_KS, LGUI_KD, LALT_KF,    KC_G,                         KC_H, LALT_KJ, RGUI_KK, RCTL_KL, RS_SCLN, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT,   LOWER,  KC_SPC,     KC_ENT,   RAISE, OSL(_ONESHOT)
-                                      //`--------------------------'  `--------------------------'
-
-  ),
-
-  [_QWERTY_NOHOMEROW] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_BSPC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT,   LOWER,  KC_SPC,     KC_ENT,   RAISE, OSL(_ONESHOT)
-                                      //`--------------------------'  `--------------------------'
-
-  ),
-
-  [_COLEMAK] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSLS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_BSPC, LSFT_KA, LCTL_KR, LGUI_KS, LALT_KT,    KC_G,                         KC_M, LALT_KN, RGUI_KE, RCTL_KI, RSFT_KO, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT,   LOWER,  KC_SPC,     KC_ENT,   RAISE, OSL(_ONESHOT)
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [_COLEMAK_NOHOMEROW] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSLS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_BSPC,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT,   LOWER,  KC_SPC,     KC_ENT,   RAISE, OSL(_ONESHOT)
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [_LOWER] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, KC_LBRC, KC_LCBR,                      KC_RCBR, KC_RBRC,  KC_EQL, _______, _______, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [_RAISE] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_ESC, KC_WH_U, KC_WBAK, KC_WFWD, KC_MS_U,                       KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_DEL, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_RALT, KC_WH_D, KC_LSFT, KC_LCTL, KC_MS_D,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, C(KC_Z), C(KC_X), C(KC_C), KC_BTN1, C(KC_V),                      KC_BTN2, KC_BTN3, KC_MS_L, KC_MS_R, _______, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [_ONESHOT] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_F12,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, COLEMAK,  QWERTY, _______, _______, _______,                      QK_BOOT, _______, _______, QWERTY_NOHOMEROW, COLEMAK_NOHOMEROW, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
-                                      //`--------------------------'  `--------------------------'
-  )
+    M_LCK    = SAFE_RANGE,
+    M_GO_SRC,
+    M_RUN
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case QWERTY_NOHOMEROW:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY_NOHOMEROW);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-    case COLEMAK_NOHOMEROW:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK_NOHOMEROW);
-      }
-      return false;
-      break;
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case ONESHOT:
-      if (record->event.pressed) {
-        set_oneshot_layer(_ONESHOT, ONESHOT_START);
-      } else {
-        clear_oneshot_layer_state(ONESHOT_PRESSED);
-      }
-      return false;
-      break;
-    case DT_UP_50:
-      if (record->event.pressed) {
-        g_tapping_term += 50;
-      }
-      return false;
-      break;
-    case DT_DOWN_50:
-      if (record->event.pressed) {
-        g_tapping_term -= 50;
-      }
-      return false;
-      break;
-    case DT_UP_X2:
-      if (record->event.pressed) {
-        g_tapping_term *= 2;
-      }
-      return false;
-      break;
-    case DT_DOWN_X2:
-      if (record->event.pressed) {
-        g_tapping_term /= 2;
-      }
-      return false;
-      break;
-    case DT_200:
-      if (record->event.pressed) {
-        g_tapping_term = 200;
-      }
-      return false;
-      break;
-    case DT_MAX:
-      if (record->event.pressed) {
-        g_tapping_term = 34464;
-      }
-      return false;
-      break;
-  }
-  return true;
-}
+    switch (keycode) {
+    case M_LCK:
+        if (record->event.pressed) {
+            SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_L) SS_UP(X_LGUI));
+        }
+        break;
+    case M_GO_SRC:
+        if (record->event.pressed) {
+            SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_F1) SS_UP(X_LALT) SS_DELAY(1000) SS_TAP(X_ENT));
+        }
+        break;
+    case M_RUN:
+        if (record->event.pressed) {
+            SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LSFT) SS_TAP(X_F10) SS_UP(X_LSFT) SS_UP(X_LALT));
+        }
+        break;
+    }
+    return true;
+};
+
+
+enum combos {
+  C_TAB,
+  C_ENT,
+  C_GUI
+};
+
+const uint16_t PROGMEM tab_combo[] = {DE_J, LT(_NAV, DE_C), COMBO_END};
+const uint16_t PROGMEM ent_combo[] = {DE_H, DE_K, COMBO_END};
+const uint16_t PROGMEM gui_combo[] = {MO(_NUM), KC_LSFT, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [C_TAB] = COMBO(tab_combo, KC_TAB),
+  [C_ENT] = COMBO(ent_combo, KC_ENT),
+  [C_GUI] = COMBO(gui_combo, KC_LGUI)
+};
+
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [_DEF] = LAYOUT_split_3x6_3(
+        _______, DE_J,           DE_L,        DE_U,        DE_A,           DE_Q,              DE_W,             DE_B,        DE_D,        DE_G,         DE_Z, _______,
+        _______, LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E),    DE_O,              DE_M,             SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), DE_H, _______,
+        _______, DE_V,           DE_X,        DE_UDIA,     DE_ADIA,        DE_ODIA,           DE_P,             DE_F,        DE_COMM,     DE_DOT,       DE_K, _______,
+                                                  _______, LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC,     _______
+    ),
+    [_NAV] = LAYOUT_split_3x6_3(
+        _______, KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC,  _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,   _______,
+        _______, _______, KC_BTN2, KC_BTN3, _______,   KC_WH_U,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT, _______,
+        _______, KC_LSFT, _______, _______, KC_BTN1,   KC_WH_D,          _______, _______, _______, _______,  DE_SS,  _______,
+                                   _______, _______,   _______,          _______, KC_DEL,  _______
+    ),
+    [_SYM] = LAYOUT_split_3x6_3(
+        _______, DE_CIRC, DE_UNDS, DE_LCBR, DE_RCBR, DE_SECT,        DE_EXLM, DE_LABK, DE_RABK, DE_EQL,  DE_AMPR, _______,
+        _______, DE_BSLS, DE_SLSH, DE_LPRN, DE_RPRN, DE_ASTR,        DE_QUES, DE_LBRC, DE_RBRC, DE_MINS, DE_COLN, _______,
+        _______, DE_ACUT, DE_DLR,  DE_PIPE, DE_TILD, DE_HASH,        DE_PLUS, DE_PERC, DE_DQUO, DE_QUOT, DE_SCLN, _______,
+                                   _______, _______, _______,        _______,  _______, _______
+    ),
+    [_NUM] = LAYOUT_split_3x6_3(
+        _______, _______,       _______,       _______,       MO(_SET),      _______,          DE_SLSH, KC_7, KC_8, KC_9, DE_MINS, _______,
+        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LCTL), OSM(MOD_LSFT), _______,          DE_ASTR, KC_4, KC_5, KC_6, DE_PLUS, _______,
+        _______, _______,       _______,       _______,       MO(_FN),       _______,          DE_SCLN, KC_1, KC_2, KC_3, KC_0,    _______,
+                                               _______,       _______,       _______,          DE_COLN, DE_DOT, _______
+    ),
+    [_FN] = LAYOUT_split_3x6_3(
+        _______, _______, _______, _______, _______, _______,          _______, KC_F7, KC_F8, KC_F9, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, KC_F4, KC_F5, KC_F6, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, KC_F1, KC_F2, KC_F3, KC_F10,  _______,
+                                   _______, _______, _______,          KC_F11,  KC_F12, _______
+    ),
+    [_SET] = LAYOUT_split_3x6_3(
+        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+        _______, QK_RBT,  QK_BOOT, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
+                                   _______, _______, _______,          _______, _______, _______
+    )
+};
