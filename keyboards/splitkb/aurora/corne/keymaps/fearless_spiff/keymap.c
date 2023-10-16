@@ -62,8 +62,8 @@ enum combos {
   C_GUI
 };
 
-const uint16_t PROGMEM tab_combo[] = {DE_J, LT(_NAV, DE_C), COMBO_END};
-const uint16_t PROGMEM ent_combo[] = {DE_H, DE_K, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {LT(_NAV, DE_C), DE_V, COMBO_END};
+const uint16_t PROGMEM ent_combo[] = {ALT_T(DE_H), DE_K, COMBO_END};
 const uint16_t PROGMEM gui_combo[] = {MO(_NUM), KC_LSFT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -75,15 +75,15 @@ combo_t key_combos[COMBO_COUNT] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF] = LAYOUT_split_3x6_3(
-        _______, DE_J,           DE_L,        DE_U,        DE_A,           DE_Q,              DE_W,             DE_B,        DE_D,        DE_G,         DE_Z, _______,
-        _______, LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E),    DE_O,              DE_M,             SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), DE_H, _______,
-        _______, DE_V,           DE_X,        DE_UDIA,     DE_ADIA,        DE_ODIA,           DE_P,             DE_F,        DE_COMM,     DE_DOT,       DE_K, _______,
-                                                  _______, LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC,     _______
+        _______, DE_J,           DE_L,        DE_U,        DE_A,           DE_Q,              DE_W,             DE_B,        DE_D,        DE_G,         DE_Z,        _______,
+        _______, LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E),    DE_O,              DE_M,             SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), ALT_T(DE_H), _______,
+        _______, DE_V,           DE_X,        DE_UDIA,     DE_ADIA,        DE_ODIA,           DE_P,             DE_F,        DE_COMM,     DE_DOT,       DE_K,        _______,
+                                              _______,     LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC,     _______
     ),
     [_NAV] = LAYOUT_split_3x6_3(
         _______, KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC,  _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,   _______,
-        _______, _______, KC_BTN2, KC_BTN3, _______,   KC_WH_U,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT, _______,
-        _______, KC_LSFT, _______, _______, KC_BTN1,   KC_WH_D,          _______, _______, _______, _______,  DE_SS,  _______,
+        _______, _______, KC_BTN3, _______, _______,   KC_WH_U,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT, _______,
+        _______, KC_LSFT, _______, KC_BTN2, KC_BTN1,   KC_WH_D,          _______, _______, _______, _______,  DE_SS,  _______,
                                    _______, _______,   _______,          _______, KC_DEL,  _______
     ),
     [_SYM] = LAYOUT_split_3x6_3(
