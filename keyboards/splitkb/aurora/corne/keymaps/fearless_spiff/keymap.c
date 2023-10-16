@@ -24,7 +24,13 @@ enum layers {
     _SYM = 2,
     _NUM = 3,
     _FN  = 4,
-    _SET = 5
+    _SET = 5,
+    _M_DEF = 6,
+    _M_NAV = 7,
+    _M_SYM = 8,
+    _M_NUM = 9,
+    _M_FN  = 10,
+    _M_SET = 11
 };
 
 
@@ -78,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, DE_J,           DE_L,        DE_U,        DE_A,           DE_Q,              DE_W,             DE_B,        DE_D,        DE_G,         DE_Z,        _______,
         _______, LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E),    DE_O,              DE_M,             SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), ALT_T(DE_H), _______,
         _______, DE_V,           DE_X,        DE_UDIA,     DE_ADIA,        DE_ODIA,           DE_P,             DE_F,        DE_COMM,     DE_DOT,       DE_K,        _______,
-                                              _______,     LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC,     _______
+                                              KC_LGUI,     LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC,     _______
     ),
     [_NAV] = LAYOUT_split_3x6_3(
         _______, KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC,  _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,   _______,
@@ -105,9 +111,46 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    _______, _______, _______,          KC_F11,  KC_F12, _______
     ),
     [_SET] = LAYOUT_split_3x6_3(
-        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
-        _______, QK_RBT,  QK_BOOT, _______, _______, _______,          _______, _______, _______, _______, _______, _______,
-                                   _______, _______, _______,          _______, _______, _______
+        _______, _______, _______, _______, _______, _______,          _______, _______,  _______, _______,    _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______,  _______, _______,    _______, _______,
+        _______, QK_RBT,  QK_BOOT, _______, _______, _______,          _______, MO(_DEF), _______, MO(_M_DEF), _______, _______,
+                                   _______, _______, _______,          _______, _______,  _______
+    ),
+// Mac Layers
+    [_M_DEF] = LAYOUT_split_3x6_3(
+        _______, DE_J,           DE_L,        DE_U,        DE_A,             DE_Q,              DE_W,               DE_B,        DE_D,        DE_G,         DE_Z,        _______,
+        _______, LT(_NAV, DE_C), ALT_T(DE_R), CTL_T(DE_I), SFT_T(DE_E),      DE_O,              DE_M,               SFT_T(DE_N), CTL_T(DE_T), ALGR_T(DE_S), ALT_T(DE_H), _______,
+        _______, DE_V,           DE_X,        DE_UDIA,     DE_ADIA,          DE_ODIA,           DE_P,               DE_F,        DE_COMM,     DE_DOT,       DE_K,        _______,
+                                              KC_LGUI,     LT(_M_NUM, DE_Y), KC_LSFT,           LT(_M_SYM, KC_SPC), KC_BSPC,     _______
+    ),
+    [_M_NAV] = LAYOUT_split_3x6_3(
+        _______, KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC,  _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,   _______,
+        _______, _______, KC_BTN3, _______, _______,   KC_WH_U,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT, _______,
+        _______, KC_LSFT, _______, KC_BTN2, KC_BTN1,   KC_WH_D,          _______, _______, _______, _______,  DE_SS,  _______,
+                                   _______, _______,   _______,          _______, KC_DEL,  _______
+    ),
+    [_M_SYM] = LAYOUT_split_3x6_3(
+        _______, DE_CIRC, DE_UNDS, DE_LCBR, DE_RCBR, DE_SECT,        DE_EXLM, DE_LABK, DE_RABK, DE_EQL,  DE_AMPR, _______,
+        _______, DE_BSLS, DE_SLSH, DE_LPRN, DE_RPRN, DE_ASTR,        DE_QUES, DE_LBRC, DE_RBRC, DE_MINS, DE_COLN, _______,
+        _______, DE_ACUT, DE_DLR,  DE_PIPE, DE_TILD, DE_HASH,        DE_PLUS, DE_PERC, DE_DQUO, DE_QUOT, DE_SCLN, _______,
+                                   _______, _______, _______,        _______,  _______, _______
+    ),
+    [_M_NUM] = LAYOUT_split_3x6_3(
+        _______, _______,       _______,       _______,       MO(_M_SET),    _______,          DE_SLSH, KC_7, KC_8, KC_9, DE_MINS, _______,
+        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LCTL), OSM(MOD_LSFT), _______,          DE_ASTR, KC_4, KC_5, KC_6, DE_PLUS, _______,
+        _______, _______,       _______,       _______,       MO(_M_FN),     _______,          DE_SCLN, KC_1, KC_2, KC_3, KC_0,    _______,
+                                               _______,       _______,       _______,          DE_COLN, DE_DOT, _______
+    ),
+    [_M_FN] = LAYOUT_split_3x6_3(
+        _______, _______, _______, _______, _______, _______,          _______, KC_F7, KC_F8, KC_F9, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, KC_F4, KC_F5, KC_F6, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, KC_F1, KC_F2, KC_F3, KC_F10,  _______,
+                                   _______, _______, _______,          KC_F11,  KC_F12, _______
+    ),
+    [_M_SET] = LAYOUT_split_3x6_3(
+        _______, _______, _______, _______, _______, _______,          _______, _______,  _______, _______,    _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______,  _______, _______,    _______, _______,
+        _______, QK_RBT,  QK_BOOT, _______, _______, _______,          _______, MO(_DEF), _______, MO(_M_DEF), _______, _______,
+                                   _______, _______, _______,          _______, _______,  _______
     )
 };

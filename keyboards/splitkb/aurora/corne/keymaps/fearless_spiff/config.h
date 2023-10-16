@@ -14,13 +14,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
-
-#define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
-#define ONESHOT_TIMEOUT 3000  /* Time (in ms) before the one shot key is released */
-
 #define TAPPING_TERM_PER_KEY
 
 #define COMBO_COUNT 3             // number of combos used
 #define COMBO_TERM 200            // time out for combos in ms
-#define TAPPING_TERM 200          // time out for tap-hold in ms
+#define TAPPING_TERM 150          // time out for tap-hold in ms
+
+#define CIRQUE_PINNACLE_POSITION_MODE CIRQUE_PINNACLE_RELATIVE_MODE
+#define CIRQUE_PINNACLE_TAP_ENABLE
+#define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
+
