@@ -87,10 +87,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                               KC_LGUI,     LT(_NUM, DE_Y), KC_LSFT,           LT(_SYM, KC_SPC), KC_BSPC,     _______
     ),
     [_NAV] = LAYOUT_split_3x6_3(
-        _______, KC_ESC,  M_LCK,   M_RUN,   M_GO_SRC,  _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,   _______,
-        _______, _______, KC_BTN3, _______, _______,   KC_WH_U,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT, _______,
-        _______, KC_LSFT, _______, KC_BTN2, KC_BTN1,   KC_WH_D,          _______, _______, _______, _______,  DE_SS,  _______,
-                                   _______, _______,   _______,          _______, KC_DEL,  _______
+        _______, KC_ESC,  M_LCK,          M_RUN,          M_GO_SRC,       _______,          KC_PGUP, KC_HOME, KC_UP,   KC_END,   DE_Y,   _______,
+        _______, _______, ALT_T(KC_BTN3), CTL_T(KC_BTN2), SFT_T(KC_BTN1), KC_WH_U,          KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT, _______,
+        _______, KC_LSFT, _______,        _______,        _______,        KC_WH_D,          _______, _______, _______, _______,  DE_SS,  _______,
+                                          _______,        _______,        _______,          _______, KC_DEL,  _______
     ),
     [_SYM] = LAYOUT_split_3x6_3(
         _______, DE_CIRC, DE_UNDS, DE_LCBR, DE_RCBR, DE_SECT,        DE_EXLM, DE_LABK, DE_RABK, DE_EQL,  DE_AMPR, _______,
