@@ -44,7 +44,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if (jig_mode) {
                     jig_mode = false;
-                    rgblight_setrgb(RGB_PURPLE);
+                    // rgblight_setrgb(RGB_PURPLE);
                     rgblight_disable();
                 } else {
                     jig_mode = true;
