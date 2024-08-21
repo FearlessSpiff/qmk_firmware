@@ -16,34 +16,21 @@
 #include QMK_KEYBOARD_H
 
 // Defines names for use in layer keycodes and the keymap
-enum layer_names {
-    _BASE,
-    _LOWER,
-};
+enum layer_names { _BASE };
 
 enum custom_keycodes { JIG };
 enum next_action { UP_DOWN, LEFT_RIGHT };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
-    [_BASE] = LAYOUT(KC_MUTE, KC_C, KC_D, KC_E, MO(_LOWER)),
-    /* Lower */
-    [_LOWER] = LAYOUT(RGB_TOG, JIG, UG_NEXT, UG_PREV, _______)};
+    [_BASE] = LAYOUT(JIG, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE)};
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        if (IS_LAYER_ON(_LOWER)) {
-            if (clockwise) {
-                tap_code_delay(KC_PGDN, 10);
-            } else {
-                tap_code_delay(KC_PGUP, 10);
-            }
+        if (clockwise) {
+            tap_code_delay(KC_VOLD, 10);
         } else {
-            if (clockwise) {
-                tap_code_delay(KC_VOLD, 10);
-            } else {
-                tap_code_delay(KC_VOLU, 10);
-            }
+            tap_code_delay(KC_VOLU, 10);
         }
     }
     return true;
