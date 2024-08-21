@@ -22,18 +22,28 @@ enum layer_names {
 };
 
 enum custom_keycodes { JIG };
+enum next_action { UP_DOWN, LEFT_RIGHT };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
-    [_BASE]  = LAYOUT(TG(_LOWER), KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE),
-    [_LOWER] = LAYOUT(_______, RGB_TOG, LCTL(KC_C), LCTL(KC_V), JIG)};
+    [_BASE] = LAYOUT(KC_MUTE, KC_C, KC_D, KC_E, MO(_LOWER)),
+    /* Lower */
+    [_LOWER] = LAYOUT(RGB_TOG, JIG, UG_NEXT, UG_PREV, _______)};
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (IS_LAYER_ON(_LOWER)) {
-            tap_code16((clockwise == true) ? KC_WH_D : KC_WH_U);
+            if (clockwise) {
+                tap_code_delay(KC_PGDN, 10);
+            } else {
+                tap_code_delay(KC_PGUP, 10);
+            }
         } else {
-            tap_code((clockwise == true) ? KC_VOLD : KC_VOLU);
+            if (clockwise) {
+                tap_code_delay(KC_VOLD, 10);
+            } else {
+                tap_code_delay(KC_VOLU, 10);
+            }
         }
     }
     return true;
@@ -46,12 +56,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case JIG:
             if (record->event.pressed) {
                 if (jig_mode) {
-                    SEND_STRING(SS_DELAY(15));
                     jig_mode = false;
                     rgblight_setrgb(RGB_PURPLE);
+                    rgblight_disable();
                 } else {
-                    SEND_STRING(SS_DELAY(15));
                     jig_mode = true;
+                    rgblight_enable();
+                    rgblight_mode(1);
                     rgblight_setrgb(RGB_RED);
                 }
             }
@@ -60,13 +71,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+int randomMs(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
+enum next_action nextAction   = UP_DOWN;
+int              sleepCounter = 0;
+int              sleepTo      = 10000;
+
 void matrix_scan_user(void) {
     if (jig_mode) {
-        SEND_STRING(SS_DELAY(10));
-        tap_code(KC_MS_UP);
-        tap_code(KC_MS_DOWN);
-        SEND_STRING(SS_DELAY(30));
-        tap_code(KC_MS_LEFT);
-        tap_code(KC_MS_RIGHT);
+        if (sleepCounter >= sleepTo && nextAction == UP_DOWN) {
+            tap_code(KC_MS_UP);
+            tap_code(KC_MS_DOWN);
+            nextAction   = LEFT_RIGHT;
+            sleepCounter = 0;
+            sleepTo      = randomMs(10000, 30000);
+        } else if (sleepCounter >= sleepTo && nextAction == LEFT_RIGHT) {
+            tap_code(KC_MS_LEFT);
+            tap_code(KC_MS_RIGHT);
+            nextAction   = UP_DOWN;
+            sleepCounter = 0;
+            sleepTo      = randomMs(10000, 30000);
+        } else {
+            SEND_STRING(SS_DELAY(1));
+            sleepCounter++;
+        }
     }
 }
