@@ -50,7 +50,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     jig_mode = true;
                     rgblight_enable();
                     rgblight_mode(1);
-                    rgblight_setrgb(RGB_RED);
+                    rgblight_setrgb(RGB_PURPLE);
                 }
             }
             break;
